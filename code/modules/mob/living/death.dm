@@ -104,4 +104,8 @@
 		var/datum/soullink/S = s
 		S.sharerDies(gibbed)
 
+	//SKYRAT CHANGES - ssd stuff
+	set_ssd_indicator(FALSE)
+	//END OF SKYRAT CHANGES
+
 	return TRUE

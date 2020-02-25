@@ -458,6 +458,7 @@ mob/visible_message(message, self_message, blind_message, vision_distance = DEFA
 		CRASH("transfer_ckey() called [new_mob ? "on ckey-less mob with a player mob as target" : "without a valid mob target"]!")
 	if(!ckey)
 		return
+	message_admins("ckey transfer on [src] [ckey] to newmob [new_mob]")
 	SEND_SIGNAL(new_mob, COMSIG_MOB_PRE_PLAYER_CHANGE, new_mob, src)
 	if (client && client.prefs && client.prefs.auto_ooc)
 		if (client.prefs.chat_toggles & CHAT_OOC && isliving(new_mob))

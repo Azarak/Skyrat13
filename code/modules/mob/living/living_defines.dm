@@ -113,3 +113,8 @@
 	var/drag_slowdown = TRUE //Whether the mob is slowed down when dragging another prone mob
 
 	var/rotate_on_lying = FALSE
+
+	//SKYRAT CHANGES - SSD stuff
+	var/lastclienttime = 0
+	var/obj/effect/decal/ssd_indicator
+	//END OF SKYRAT CHANGES

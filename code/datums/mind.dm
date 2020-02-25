@@ -92,6 +92,10 @@
 		return
 	if(current)	// remove ourself from our old body's mind variable
 		current.mind = null
+		message_admins("Mind nulled.")
+		//if(istype(current,/mob/living))
+		//	current.set_ssd_indicator(FALSE)
+
 		SStgui.on_transfer(current, new_character)
 		if(iscarbon(current))
 			var/mob/living/carbon/C = current
@@ -109,11 +113,13 @@
 
 	if(new_character.mind)								//disassociate any mind currently in our new body's mind variable
 		new_character.mind.current = null
+		message_admins("[new_character] got mind disoassociated")
 
 	var/datum/atom_hud/antag/hud_to_transfer = antag_hud//we need this because leave_hud() will clear this list
 	var/mob/living/old_current = current
 	if(current)
 		current.transfer_observers_to(new_character)	//transfer anyone observing the old character to the new one
+	message_admins("[new_character] gets set to [current]")
 	current = new_character								//associate ourself with our new body
 	new_character.mind = src							//and associate our new body with ourself
 	for(var/a in antag_datums)	//Makes sure all antag datums effects are applied in the new body
@@ -743,6 +749,7 @@
 
 //Initialisation procs
 /mob/proc/mind_initialize()
+	message_admins("Mind initialize on [mind] and [key]")
 	if(mind)
 		mind.key = key
 

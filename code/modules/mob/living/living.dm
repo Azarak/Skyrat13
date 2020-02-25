@@ -1273,3 +1273,23 @@
 	update_canmove()
 	if(healing_chems)
 		reagents.add_reagent_list(healing_chems)
+
+//SKYRAT PROCS - SSD stuff
+/mob/living/proc/set_ssd_indicator(var/state)
+	if(!ssd_indicator)
+		ssd_indicator = new
+		ssd_indicator.icon = 'modular_skyrat/icons/mob/ssd.dmi'
+		ssd_indicator.icon_state = "default0"
+		ssd_indicator.layer = ABOVE_MOB_LAYER
+
+	ssd_indicator.invisibility = invisibility
+	if(state && stat != DEAD)
+		overlays += ssd_indicator
+	else
+		overlays -= ssd_indicator
+	return state
+
+/mob/living/transfer_ckey(mob/new_mob, send_signal = TRUE)
+	..()
+	//set_ssd_indicator(FALSE)
+//END OF SKYRAT PROCS
